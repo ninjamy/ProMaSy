@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Worktypeid:</strong>
+  <%= @work_group.WorkTypeID %>
+</p>
+
+<p>
+  <strong>Stageid:</strong>
+  <%= @work_group.StageID %>
+</p>
+
+<p>
+  <strong>Tasktypeid:</strong>
+  <%= @work_group.TaskTypeID %>
+</p>
+
+<p>
+  <strong>Roleid:</strong>
+  <%= @work_group.RoleID %>
+</p>
+
+<p>
+  <strong>Environmentid:</strong>
+  <%= @work_group.EnvironmentID %>
+</p>
+
+<p>
+  <strong>Portid:</strong>
+  <%= @work_group.PortID %>
+</p>
+
+<p>
+  <strong>Workgrouporder:</strong>
+  <%= @work_group.WorkGroupOrder %>
+</p>
+
+<%= link_to 'Edit', edit_work_group_path(@work_group) %> |
+<%= link_to 'Back', work_groups_path %>

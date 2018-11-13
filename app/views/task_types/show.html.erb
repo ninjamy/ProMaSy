@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tasktype:</strong>
+  <%= @task_type.TaskType %>
+</p>
+
+<p>
+  <strong>Isactive:</strong>
+  <%= @task_type.isActive %>
+</p>
+
+<p>
+  <strong>Portid:</strong>
+  <%= @task_type.PortID %>
+</p>
+
+<p>
+  <strong>Editlabel:</strong>
+  <%= @task_type.EditLabel %>
+</p>
+
+<%= link_to 'Edit', edit_task_type_path(@task_type) %> |
+<%= link_to 'Back', task_types_path %>

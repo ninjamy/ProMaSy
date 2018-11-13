@@ -1,0 +1,2 @@
+class EditHistory < ApplicationRecord
+end

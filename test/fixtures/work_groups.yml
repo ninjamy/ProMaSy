@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  WorkTypeID: 1
+  StageID: 1
+  TaskTypeID: 1
+  RoleID: 1
+  EnvironmentID: 1
+  PortID: 1
+  WorkGroupOrder: 1
+
+two:
+  WorkTypeID: 1
+  StageID: 1
+  TaskTypeID: 1
+  RoleID: 1
+  EnvironmentID: 1
+  PortID: 1
+  WorkGroupOrder: 1

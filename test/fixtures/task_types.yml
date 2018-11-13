@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  TaskType: MyString
+  isActive: false
+  PortID: 1
+  EditLabel: MyString
+
+two:
+  TaskType: MyString
+  isActive: false
+  PortID: 1
+  EditLabel: MyString

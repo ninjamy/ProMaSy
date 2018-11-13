@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  WorkType: MyString
+  PortID: 1
+  EditLabel: MyString
+
+two:
+  WorkType: MyString
+  PortID: 1
+  EditLabel: MyString

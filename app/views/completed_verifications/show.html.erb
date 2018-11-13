@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Workid:</strong>
+  <%= @completed_verification.WorkID %>
+</p>
+
+<p>
+  <strong>Criteriadescription:</strong>
+  <%= @completed_verification.CriteriaDescription %>
+</p>
+
+<p>
+  <strong>Iscompleted:</strong>
+  <%= @completed_verification.isCompleted %>
+</p>
+
+<p>
+  <strong>Datecompleted:</strong>
+  <%= @completed_verification.DateCompleted %>
+</p>
+
+<p>
+  <strong>Addby:</strong>
+  <%= @completed_verification.AddBy %>
+</p>
+
+<p>
+  <strong>Completedby:</strong>
+  <%= @completed_verification.CompletedBy %>
+</p>
+
+<p>
+  <strong>Importancelevel:</strong>
+  <%= @completed_verification.ImportanceLevel %>
+</p>
+
+<%= link_to 'Edit', edit_completed_verification_path(@completed_verification) %> |
+<%= link_to 'Back', completed_verifications_path %>

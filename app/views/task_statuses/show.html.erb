@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Taskstatus:</strong>
+  <%= @task_status.TaskStatus %>
+</p>
+
+<p>
+  <strong>Portid:</strong>
+  <%= @task_status.PortID %>
+</p>
+
+<%= link_to 'Edit', edit_task_status_path(@task_status) %> |
+<%= link_to 'Back', task_statuses_path %>

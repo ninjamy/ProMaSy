@@ -1,0 +1,32 @@
+<%= form_with(model: work_type, local: true) do |form| %>
+  <% if work_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(work_type.errors.count, "error") %> prohibited this work_type from being saved:</h2>
+
+      <ul>
+      <% work_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :WorkType %>
+    <%= form.text_field :WorkType, id: :work_type_WorkType %>
+  </div>
+
+  <div class="field">
+    <%= form.label :PortID %>
+    <%= form.number_field :PortID, id: :work_type_PortID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :EditLabel %>
+    <%= form.text_field :EditLabel, id: :work_type_EditLabel %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

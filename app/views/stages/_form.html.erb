@@ -1,0 +1,42 @@
+<%= form_with(model: stage, local: true) do |form| %>
+  <% if stage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stage.errors.count, "error") %> prohibited this stage from being saved:</h2>
+
+      <ul>
+      <% stage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :StageName %>
+    <%= form.text_field :StageName, id: :stage_StageName %>
+  </div>
+
+  <div class="field">
+    <%= form.label :isActive %>
+    <%= form.check_box :isActive, id: :stage_isActive %>
+  </div>
+
+  <div class="field">
+    <%= form.label :StageOrder %>
+    <%= form.text_field :StageOrder, id: :stage_StageOrder %>
+  </div>
+
+  <div class="field">
+    <%= form.label :PortID %>
+    <%= form.number_field :PortID, id: :stage_PortID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :EditLabel %>
+    <%= form.text_field :EditLabel, id: :stage_EditLabel %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

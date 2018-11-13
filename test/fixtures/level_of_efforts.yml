@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  PortID: 1
+  LOEMin: 1
+  LOEMax: 1
+
+two:
+  PortID: 1
+  LOEMin: 1
+  LOEMax: 1

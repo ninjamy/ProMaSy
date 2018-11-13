@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Workname:</strong>
+  <%= @work.WorkName %>
+</p>
+
+<p>
+  <strong>Portid:</strong>
+  <%= @work.PortID %>
+</p>
+
+<p>
+  <strong>Worktypeid:</strong>
+  <%= @work.WorkTypeID %>
+</p>
+
+<p>
+  <strong>Parentworkid:</strong>
+  <%= @work.ParentWorkID %>
+</p>
+
+<p>
+  <strong>Estloe:</strong>
+  <%= @work.EstLOE %>
+</p>
+
+<p>
+  <strong>Workownerid:</strong>
+  <%= @work.WorkOwnerID %>
+</p>
+
+<p>
+  <strong>Workdescription:</strong>
+  <%= @work.WorkDescription %>
+</p>
+
+<p>
+  <strong>Stageid:</strong>
+  <%= @work.StageID %>
+</p>
+
+<p>
+  <strong>Requestbyid:</strong>
+  <%= @work.RequestByID %>
+</p>
+
+<p>
+  <strong>Datedeleted:</strong>
+  <%= @work.DateDeleted %>
+</p>
+
+<%= link_to 'Edit', edit_work_path(@work) %> |
+<%= link_to 'Back', works_path %>

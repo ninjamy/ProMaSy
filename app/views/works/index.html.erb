@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Works</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Workname</th>
+      <th>Portid</th>
+      <th>Worktypeid</th>
+      <th>Parentworkid</th>
+      <th>Estloe</th>
+      <th>Workownerid</th>
+      <th>Workdescription</th>
+      <th>Stageid</th>
+      <th>Requestbyid</th>
+      <th>Datedeleted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @works.each do |work| %>
+      <tr>
+        <td><%= work.WorkName %></td>
+        <td><%= work.PortID %></td>
+        <td><%= work.WorkTypeID %></td>
+        <td><%= work.ParentWorkID %></td>
+        <td><%= work.EstLOE %></td>
+        <td><%= work.WorkOwnerID %></td>
+        <td><%= work.WorkDescription %></td>
+        <td><%= work.StageID %></td>
+        <td><%= work.RequestByID %></td>
+        <td><%= work.DateDeleted %></td>
+        <td><%= link_to 'Show', work %></td>
+        <td><%= link_to 'Edit', edit_work_path(work) %></td>
+        <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Work', new_work_path %>

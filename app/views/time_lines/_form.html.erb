@@ -1,0 +1,42 @@
+<%= form_with(model: time_line, local: true) do |form| %>
+  <% if time_line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(time_line.errors.count, "error") %> prohibited this time_line from being saved:</h2>
+
+      <ul>
+      <% time_line.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :WorkID %>
+    <%= form.number_field :WorkID, id: :time_line_WorkID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :RemaingHours %>
+    <%= form.number_field :RemaingHours, id: :time_line_RemaingHours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :StageID %>
+    <%= form.number_field :StageID, id: :time_line_StageID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :TaskID %>
+    <%= form.number_field :TaskID, id: :time_line_TaskID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :TaskStatusID %>
+    <%= form.number_field :TaskStatusID, id: :time_line_TaskStatusID %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

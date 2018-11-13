@@ -1,0 +1,52 @@
+<%= form_with(model: work_group, local: true) do |form| %>
+  <% if work_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(work_group.errors.count, "error") %> prohibited this work_group from being saved:</h2>
+
+      <ul>
+      <% work_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :WorkTypeID %>
+    <%= form.number_field :WorkTypeID, id: :work_group_WorkTypeID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :StageID %>
+    <%= form.number_field :StageID, id: :work_group_StageID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :TaskTypeID %>
+    <%= form.number_field :TaskTypeID, id: :work_group_TaskTypeID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :RoleID %>
+    <%= form.number_field :RoleID, id: :work_group_RoleID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :EnvironmentID %>
+    <%= form.number_field :EnvironmentID, id: :work_group_EnvironmentID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :PortID %>
+    <%= form.number_field :PortID, id: :work_group_PortID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :WorkGroupOrder %>
+    <%= form.number_field :WorkGroupOrder, id: :work_group_WorkGroupOrder %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

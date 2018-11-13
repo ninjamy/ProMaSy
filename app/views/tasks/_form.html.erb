@@ -1,0 +1,62 @@
+<%= form_with(model: task, local: true) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :WorkID %>
+    <%= form.number_field :WorkID, id: :task_WorkID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :UserID %>
+    <%= form.number_field :UserID, id: :task_UserID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :TaskTypeID %>
+    <%= form.number_field :TaskTypeID, id: :task_TaskTypeID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :EstHours %>
+    <%= form.number_field :EstHours, id: :task_EstHours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :RemaingHours %>
+    <%= form.number_field :RemaingHours, id: :task_RemaingHours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ActualHours %>
+    <%= form.number_field :ActualHours, id: :task_ActualHours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :WaitingOn_TaskID %>
+    <%= form.number_field :WaitingOn_TaskID, id: :task_WaitingOn_TaskID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :TaskStatusID %>
+    <%= form.number_field :TaskStatusID, id: :task_TaskStatusID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :DateStarted %>
+    <%= form.datetime_select :DateStarted, id: :task_DateStarted %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

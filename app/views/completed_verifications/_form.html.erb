@@ -1,0 +1,52 @@
+<%= form_with(model: completed_verification, local: true) do |form| %>
+  <% if completed_verification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(completed_verification.errors.count, "error") %> prohibited this completed_verification from being saved:</h2>
+
+      <ul>
+      <% completed_verification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :WorkID %>
+    <%= form.number_field :WorkID, id: :completed_verification_WorkID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :CriteriaDescription %>
+    <%= form.text_field :CriteriaDescription, id: :completed_verification_CriteriaDescription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :isCompleted %>
+    <%= form.check_box :isCompleted, id: :completed_verification_isCompleted %>
+  </div>
+
+  <div class="field">
+    <%= form.label :DateCompleted %>
+    <%= form.datetime_select :DateCompleted, id: :completed_verification_DateCompleted %>
+  </div>
+
+  <div class="field">
+    <%= form.label :AddBy %>
+    <%= form.number_field :AddBy, id: :completed_verification_AddBy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :CompletedBy %>
+    <%= form.number_field :CompletedBy, id: :completed_verification_CompletedBy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ImportanceLevel %>
+    <%= form.number_field :ImportanceLevel, id: :completed_verification_ImportanceLevel %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

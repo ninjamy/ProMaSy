@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Edit Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tablename</th>
+      <th>Oldvalue</th>
+      <th>Newvalue</th>
+      <th>Columname</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @edit_histories.each do |edit_history| %>
+      <tr>
+        <td><%= edit_history.TableName %></td>
+        <td><%= edit_history.OldValue %></td>
+        <td><%= edit_history.NewValue %></td>
+        <td><%= edit_history.ColumName %></td>
+        <td><%= link_to 'Show', edit_history %></td>
+        <td><%= link_to 'Edit', edit_edit_history_path(edit_history) %></td>
+        <td><%= link_to 'Destroy', edit_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Edit History', new_edit_history_path %>

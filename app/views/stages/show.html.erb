@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Stagename:</strong>
+  <%= @stage.StageName %>
+</p>
+
+<p>
+  <strong>Isactive:</strong>
+  <%= @stage.isActive %>
+</p>
+
+<p>
+  <strong>Stageorder:</strong>
+  <%= @stage.StageOrder %>
+</p>
+
+<p>
+  <strong>Portid:</strong>
+  <%= @stage.PortID %>
+</p>
+
+<p>
+  <strong>Editlabel:</strong>
+  <%= @stage.EditLabel %>
+</p>
+
+<%= link_to 'Edit', edit_stage_path(@stage) %> |
+<%= link_to 'Back', stages_path %>

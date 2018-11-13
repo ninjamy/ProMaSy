@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Workid:</strong>
+  <%= @task.WorkID %>
+</p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @task.UserID %>
+</p>
+
+<p>
+  <strong>Tasktypeid:</strong>
+  <%= @task.TaskTypeID %>
+</p>
+
+<p>
+  <strong>Esthours:</strong>
+  <%= @task.EstHours %>
+</p>
+
+<p>
+  <strong>Remainghours:</strong>
+  <%= @task.RemaingHours %>
+</p>
+
+<p>
+  <strong>Actualhours:</strong>
+  <%= @task.ActualHours %>
+</p>
+
+<p>
+  <strong>Waitingon taskid:</strong>
+  <%= @task.WaitingOn_TaskID %>
+</p>
+
+<p>
+  <strong>Taskstatusid:</strong>
+  <%= @task.TaskStatusID %>
+</p>
+
+<p>
+  <strong>Datestarted:</strong>
+  <%= @task.DateStarted %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

@@ -1,0 +1,27 @@
+<%= form_with(model: task_status, local: true) do |form| %>
+  <% if task_status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task_status.errors.count, "error") %> prohibited this task_status from being saved:</h2>
+
+      <ul>
+      <% task_status.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :TaskStatus %>
+    <%= form.text_field :TaskStatus, id: :task_status_TaskStatus %>
+  </div>
+
+  <div class="field">
+    <%= form.label :PortID %>
+    <%= form.number_field :PortID, id: :task_status_PortID %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+module CompletedVerificationsHelper
+end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  PortName: MyString
+  isActive: false
+  CompanyID: false
+  isDefault: false
+
+two:
+  PortName: MyString
+  isActive: false
+  CompanyID: false
+  isDefault: false

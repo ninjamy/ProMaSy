@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Level Of Efforts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Portid</th>
+      <th>Loemin</th>
+      <th>Loemax</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @level_of_efforts.each do |level_of_effort| %>
+      <tr>
+        <td><%= level_of_effort.PortID %></td>
+        <td><%= level_of_effort.LOEMin %></td>
+        <td><%= level_of_effort.LOEMax %></td>
+        <td><%= link_to 'Show', level_of_effort %></td>
+        <td><%= link_to 'Edit', edit_level_of_effort_path(level_of_effort) %></td>
+        <td><%= link_to 'Destroy', level_of_effort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Level Of Effort', new_level_of_effort_path %>

@@ -1,0 +1,39 @@
+
+
+<%= form_with(model: portfolio, local: true) do |form| %>
+  <% if portfolio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(portfolio.errors.count, "error") %> prohibited this portfolio from being saved:</h2>
+
+      <ul>
+      <% portfolio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :PortName %>
+    <%= form.text_field :PortName, id: :portfolio_PortName %>
+  </div>
+
+  <div class="field">
+    <%= form.label :isActive %>
+    <%= form.check_box :isActive, id: :portfolio_isActive %>
+  </div>
+
+  
+  <div class="field">
+    <%= form.number_field :CompanyID, id: :portfolio_CompanyID , :value => params[:companyid] , readonly: true, hidden: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :isDefault %>
+    <%= form.check_box :isDefault, id: :portfolio_isDefault %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

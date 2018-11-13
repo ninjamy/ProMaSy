@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @user_access.UserID %>
+</p>
+
+<p>
+  <strong>Portid:</strong>
+  <%= @user_access.PortID %>
+</p>
+
+<%= link_to 'Edit', edit_user_access_path(@user_access) %> |
+<%= link_to 'Back', user_accesses_path %>

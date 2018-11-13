@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  StageName: MyString
+  isActive: false
+  StageOrder: 
+  PortID: 1
+  EditLabel: MyString
+
+two:
+  StageName: MyString
+  isActive: false
+  StageOrder: 
+  PortID: 1
+  EditLabel: MyString

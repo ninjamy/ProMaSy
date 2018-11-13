@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Environmentname:</strong>
+  <%= @environment.EnvironmentName %>
+</p>
+
+<p>
+  <strong>Portid:</strong>
+  <%= @environment.PortID %>
+</p>
+
+<%= link_to 'Edit', edit_environment_path(@environment) %> |
+<%= link_to 'Back', environments_path %>

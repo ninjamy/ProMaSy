@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Portid:</strong>
+  <%= @level_of_effort.PortID %>
+</p>
+
+<p>
+  <strong>Loemin:</strong>
+  <%= @level_of_effort.LOEMin %>
+</p>
+
+<p>
+  <strong>Loemax:</strong>
+  <%= @level_of_effort.LOEMax %>
+</p>
+
+<%= link_to 'Edit', edit_level_of_effort_path(@level_of_effort) %> |
+<%= link_to 'Back', level_of_efforts_path %>

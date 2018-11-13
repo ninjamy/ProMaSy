@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  WorkID: 1
+  CriteriaDescription: MyString
+  isCompleted: false
+  DateCompleted: 2018-11-05 17:49:33
+  AddBy: 1
+  CompletedBy: 1
+  ImportanceLevel: 1
+
+two:
+  WorkID: 1
+  CriteriaDescription: MyString
+  isCompleted: false
+  DateCompleted: 2018-11-05 17:49:33
+  AddBy: 1
+  CompletedBy: 1
+  ImportanceLevel: 1

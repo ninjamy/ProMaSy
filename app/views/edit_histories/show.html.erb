@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tablename:</strong>
+  <%= @edit_history.TableName %>
+</p>
+
+<p>
+  <strong>Oldvalue:</strong>
+  <%= @edit_history.OldValue %>
+</p>
+
+<p>
+  <strong>Newvalue:</strong>
+  <%= @edit_history.NewValue %>
+</p>
+
+<p>
+  <strong>Columname:</strong>
+  <%= @edit_history.ColumName %>
+</p>
+
+<%= link_to 'Edit', edit_edit_history_path(@edit_history) %> |
+<%= link_to 'Back', edit_histories_path %>

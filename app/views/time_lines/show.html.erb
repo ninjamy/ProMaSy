@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Workid:</strong>
+  <%= @time_line.WorkID %>
+</p>
+
+<p>
+  <strong>Remainghours:</strong>
+  <%= @time_line.RemaingHours %>
+</p>
+
+<p>
+  <strong>Stageid:</strong>
+  <%= @time_line.StageID %>
+</p>
+
+<p>
+  <strong>Taskid:</strong>
+  <%= @time_line.TaskID %>
+</p>
+
+<p>
+  <strong>Taskstatusid:</strong>
+  <%= @time_line.TaskStatusID %>
+</p>
+
+<%= link_to 'Edit', edit_time_line_path(@time_line) %> |
+<%= link_to 'Back', time_lines_path %>

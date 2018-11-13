@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  WorkID: 1
+  RemaingHours: 1
+  StageID: 1
+  TaskID: 1
+  TaskStatusID: 1
+
+two:
+  WorkID: 1
+  RemaingHours: 1
+  StageID: 1
+  TaskID: 1
+  TaskStatusID: 1

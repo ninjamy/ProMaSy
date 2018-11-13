@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Completed Verifications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Workid</th>
+      <th>Criteriadescription</th>
+      <th>Iscompleted</th>
+      <th>Datecompleted</th>
+      <th>Addby</th>
+      <th>Completedby</th>
+      <th>Importancelevel</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @completed_verifications.each do |completed_verification| %>
+      <tr>
+        <td><%= completed_verification.WorkID %></td>
+        <td><%= completed_verification.CriteriaDescription %></td>
+        <td><%= completed_verification.isCompleted %></td>
+        <td><%= completed_verification.DateCompleted %></td>
+        <td><%= completed_verification.AddBy %></td>
+        <td><%= completed_verification.CompletedBy %></td>
+        <td><%= completed_verification.ImportanceLevel %></td>
+        <td><%= link_to 'Show', completed_verification %></td>
+        <td><%= link_to 'Edit', edit_completed_verification_path(completed_verification) %></td>
+        <td><%= link_to 'Destroy', completed_verification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Completed Verification', new_completed_verification_path %>

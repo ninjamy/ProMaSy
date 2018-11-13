@@ -1,0 +1,67 @@
+<%= form_with(model: work, local: true) do |form| %>
+  <% if work.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(work.errors.count, "error") %> prohibited this work from being saved:</h2>
+
+      <ul>
+      <% work.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :WorkName %>
+    <%= form.text_field :WorkName, id: :work_WorkName %>
+  </div>
+
+  <div class="field">
+    <%= form.label :PortID %>
+    <%= form.number_field :PortID, id: :work_PortID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :WorkTypeID %>
+    <%= form.number_field :WorkTypeID, id: :work_WorkTypeID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ParentWorkID %>
+    <%= form.number_field :ParentWorkID, id: :work_ParentWorkID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :EstLOE %>
+    <%= form.number_field :EstLOE, id: :work_EstLOE %>
+  </div>
+
+  <div class="field">
+    <%= form.label :WorkOwnerID %>
+    <%= form.number_field :WorkOwnerID, id: :work_WorkOwnerID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :WorkDescription %>
+    <%= form.text_field :WorkDescription, id: :work_WorkDescription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :StageID %>
+    <%= form.number_field :StageID, id: :work_StageID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :RequestByID %>
+    <%= form.number_field :RequestByID, id: :work_RequestByID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :DateDeleted %>
+    <%= form.text_field :DateDeleted, id: :work_DateDeleted %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

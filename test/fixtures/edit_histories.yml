@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  TableName: MyString
+  OldValue: MyString
+  NewValue: MyString
+  ColumName: MyString
+
+two:
+  TableName: MyString
+  OldValue: MyString
+  NewValue: MyString
+  ColumName: MyString

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  WorkName: MyString
+  PortID: 1
+  WorkTypeID: 1
+  ParentWorkID: 1
+  EstLOE: 1
+  WorkOwnerID: 1
+  WorkDescription: MyString
+  StageID: 1
+  RequestByID: 1
+  DateDeleted: 
+
+two:
+  WorkName: MyString
+  PortID: 1
+  WorkTypeID: 1
+  ParentWorkID: 1
+  EstLOE: 1
+  WorkOwnerID: 1
+  WorkDescription: MyString
+  StageID: 1
+  RequestByID: 1
+  DateDeleted: 
