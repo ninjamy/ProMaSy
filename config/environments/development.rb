@@ -51,4 +51,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  #config.gem 'activerecord-sqlserver-adapter', :version => 'x.x.xx'
+  #config.gem 'activerecord-sqlserver-adapter-schemas', :version => 'x.x.xx'
+
 end

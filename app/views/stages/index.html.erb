@@ -5,11 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Stagename</th>
-      <th>Isactive</th>
-      <th>Stageorder</th>
-      <th>Portid</th>
-      <th>Editlabel</th>
+      <th>Stage</th>
+      <th>Active</th>
+      <th>Order</th>
+      <th>Portfolio</th>
+      <th>Label</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +17,11 @@
   <tbody>
     <% @stages.each do |stage| %>
       <tr>
-        <td><%= stage.StageName %></td>
-        <td><%= stage.isActive %></td>
-        <td><%= stage.StageOrder %></td>
-        <td><%= stage.PortID %></td>
-        <td><%= stage.EditLabel %></td>
+        <td><%= stage.stage_name %></td>
+        <td><%= stage.is_active %></td>
+        <td><%= stage.stage_order %></td>
+        <td><%= stage.portfolio_id %></td>
+        <td><%= stage.edit_label %></td>
         <td><%= link_to 'Show', stage %></td>
         <td><%= link_to 'Edit', edit_stage_path(stage) %></td>
         <td><%= link_to 'Destroy', stage, method: :delete, data: { confirm: 'Are you sure?' } %></td>

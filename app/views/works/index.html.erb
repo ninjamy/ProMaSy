@@ -5,16 +5,16 @@
 <table>
   <thead>
     <tr>
-      <th>Workname</th>
-      <th>Portid</th>
-      <th>Worktypeid</th>
-      <th>Parentworkid</th>
-      <th>Estloe</th>
-      <th>Workownerid</th>
-      <th>Workdescription</th>
-      <th>Stageid</th>
-      <th>Requestbyid</th>
-      <th>Datedeleted</th>
+      <th>Work Name</th>
+      <th>Portfolio</th>
+      <th>Work Type</th>
+      <th>Parent Work</th>
+      <th>Estimated LOE</th>
+      <th>Work Owner</th>
+      <th>Work Description</th>
+      <th>Stage</th>
+      <th>Requested By</th>
+      <th>Date Deleted</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,16 +22,16 @@
   <tbody>
     <% @works.each do |work| %>
       <tr>
-        <td><%= work.WorkName %></td>
-        <td><%= work.PortID %></td>
-        <td><%= work.WorkTypeID %></td>
-        <td><%= work.ParentWorkID %></td>
-        <td><%= work.EstLOE %></td>
-        <td><%= work.WorkOwnerID %></td>
-        <td><%= work.WorkDescription %></td>
-        <td><%= work.StageID %></td>
-        <td><%= work.RequestByID %></td>
-        <td><%= work.DateDeleted %></td>
+        <td><%= work.work_name %></td>
+        <td><%= work.portfolio_id %></td>
+        <td><%= work.work_type_id %></td>
+        <td><%= work.parent_work_id %></td>
+        <td><%= work.est_loe %></td>
+        <td><%= work.work_owner_id %></td>
+        <td><%= work.work_description %></td>
+        <td><%= work.stage_id %></td>
+        <td><%= work.requested_by_id %></td>
+        <td><%= work.date_deleted %></td>
         <td><%= link_to 'Show', work %></td>
         <td><%= link_to 'Edit', edit_work_path(work) %></td>
         <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>

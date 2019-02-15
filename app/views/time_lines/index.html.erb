@@ -5,11 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Workid</th>
-      <th>Remainghours</th>
-      <th>Stageid</th>
-      <th>Taskid</th>
-      <th>Taskstatusid</th>
+      <th>Work</th>
+      <th>Remaining Hours</th>
+      <th>Stage</th>
+      <th>Task</th>
+      <th>Task Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +17,11 @@
   <tbody>
     <% @time_lines.each do |time_line| %>
       <tr>
-        <td><%= time_line.WorkID %></td>
-        <td><%= time_line.RemaingHours %></td>
-        <td><%= time_line.StageID %></td>
-        <td><%= time_line.TaskID %></td>
-        <td><%= time_line.TaskStatusID %></td>
+        <td><%= time_line.work_id %></td>
+        <td><%= time_line.remaining_hours %></td>
+        <td><%= time_line.stage_id %></td>
+        <td><%= time_line.task_id %></td>
+        <td><%= time_line.task_status_id %></td>
         <td><%= link_to 'Show', time_line %></td>
         <td><%= link_to 'Edit', edit_time_line_path(time_line) %></td>
         <td><%= link_to 'Destroy', time_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>

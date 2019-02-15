@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @companyid = params[:companyid] 
-    @users = User.where(CompanyID:@companyid)
+    @company_id = params[:company_id] 
+    @users = User.where(company_id:@company_id)
   end
 
   # GET /users/1
@@ -70,6 +70,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:UserName, :UserEmail, :CompanyID)
+      params.require(:user).permit(:user_name, :user_email, :company_id)
     end
 end

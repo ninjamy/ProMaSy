@@ -69,6 +69,6 @@ class StagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stage_params
-      params.require(:stage).permit(:StageName, :isActive, :StageOrder, :PortID, :EditLabel)
+      params.require(:stage).permit(:stage_name, :is_active, :stage_order, :portfolio_id, :edit_label)
     end
 end

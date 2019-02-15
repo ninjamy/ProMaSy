@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :UserName %>
-    <%= form.text_field :UserName, id: :user_UserName %>
+    <%= form.label :user_name %>
+    <%= form.text_field :user_name, id: :user_user_name %>
   </div>
 
   <div class="field">
-    <%= form.label :UserEmail %>
-    <%= form.text_field :UserEmail, id: :user_UserEmail %>
+    <%= form.label :user_email %>
+    <%= form.text_field :user_email, id: :user_user_email %>
   </div>
 
 <div class="field">
-    <%= form.number_field :CompanyID, id: :portfolio_CompanyID , :value => params[:companyid] , readonly: true %>
+    <%= form.number_field :company_id, id: :portfolio_company_id , :value => params[:company_id] , readonly: true %>
   </div>
 
   <div class="actions">

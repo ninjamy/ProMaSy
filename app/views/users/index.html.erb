@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Username</th>
-      <th>Useremail</th>
-      <th>Companyid</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Company</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +15,9 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.UserName %></td>
-        <td><%= user.UserEmail %></td>
-        <td><%= user.CompanyID %></td>
+        <td><%= user.user_name %></td>
+        <td><%= user.user_email %></td>
+        <td><%= user.company_id %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,9 +28,9 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path(@companyid, :companyid=>@companyid) %>
+<%= link_to 'New User', new_user_path(@company_id, :company_id=>@company_id) %>
 
 
 <br>
-<%= link_to 'Back to Portfolios', portfolios_path(@companyid,  :companyid=> params[:companyid]) %>
+<%= link_to 'Back to Portfolios', portfolios_path(@company_id,  :company_id=> params[:company_id]) %>
 

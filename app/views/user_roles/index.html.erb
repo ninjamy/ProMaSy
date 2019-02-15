@@ -5,9 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Userid</th>
-      <th>Roleid</th>
-      <th></th>
+      <th>User</th>
+      <th>Role</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +14,8 @@
   <tbody>
     <% @user_roles.each do |user_role| %>
       <tr>
-        <td><%= user_role.UserID %></td>
-        <td><%= user_role.RoleID %></td>
-        <td><%= user_role. %></td>
+        <td><%= user_role.user_id %></td>
+        <td><%= user_role.role_id %></td>
         <td><%= link_to 'Show', user_role %></td>
         <td><%= link_to 'Edit', edit_user_role_path(user_role) %></td>
         <td><%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' } %></td>

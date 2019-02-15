@@ -5,15 +5,15 @@
 <table>
   <thead>
     <tr>
-      <th>Workid</th>
-      <th>Userid</th>
-      <th>Tasktypeid</th>
-      <th>Esthours</th>
-      <th>Remainghours</th>
-      <th>Actualhours</th>
-      <th>Waitingon taskid</th>
-      <th>Taskstatusid</th>
-      <th>Datestarted</th>
+      <th>Work</th>
+      <th>User</th>
+      <th>Task Type</th>
+      <th>Estimated Hours</th>
+      <th>Remaining Hours</th>
+      <th>Actual Hours</th>
+      <th>Waiting On Task</th>
+      <th>Task Status</th>
+      <th>Date Started</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,15 +21,15 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.WorkID %></td>
-        <td><%= task.UserID %></td>
-        <td><%= task.TaskTypeID %></td>
-        <td><%= task.EstHours %></td>
-        <td><%= task.RemaingHours %></td>
-        <td><%= task.ActualHours %></td>
-        <td><%= task.WaitingOn_TaskID %></td>
-        <td><%= task.TaskStatusID %></td>
-        <td><%= task.DateStarted %></td>
+        <td><%= task.work_id %></td>
+        <td><%= task.user_id %></td>
+        <td><%= task.task_type_id %></td>
+        <td><%= task.est_hours %></td>
+        <td><%= task.remaining_hours %></td>
+        <td><%= task.actual_hours %></td>
+        <td><%= task.waiting_on_task_id %></td>
+        <td><%= task.task_status_id %></td>
+        <td><%= task.date_started %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>

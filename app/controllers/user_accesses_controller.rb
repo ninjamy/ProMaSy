@@ -69,6 +69,6 @@ class UserAccessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_access_params
-      params.require(:user_access).permit(:UserID, :PortID)
+      params.require(:user_access).permit(:user_id, :portfolio_id)
     end
 end

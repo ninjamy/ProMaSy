@@ -69,6 +69,6 @@ class WorkGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_group_params
-      params.require(:work_group).permit(:WorkTypeID, :StageID, :TaskTypeID, :RoleID, :EnvironmentID, :PortID, :WorkGroupOrder)
+      params.require(:work_group).permit(:work_type_id, :stage_id, :task_type_id, :role_id, :environment_id, :portfolio_id, :work_group_order)
     end
 end

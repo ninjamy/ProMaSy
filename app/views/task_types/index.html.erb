@@ -5,10 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Tasktype</th>
-      <th>Isactive</th>
-      <th>Portid</th>
-      <th>Editlabel</th>
+      <th>Task Type</th>
+      <th>Active</th>
+      <th>Portfolio</th>
+      <th>Edit Label</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,10 @@
   <tbody>
     <% @task_types.each do |task_type| %>
       <tr>
-        <td><%= task_type.TaskType %></td>
-        <td><%= task_type.isActive %></td>
-        <td><%= task_type.PortID %></td>
-        <td><%= task_type.EditLabel %></td>
+        <td><%= task_type.task_type %></td>
+        <td><%= task_type.is_active %></td>
+        <td><%= task_type.portfolio_id %></td>
+        <td><%= task_type.edit_label %></td>
         <td><%= link_to 'Show', task_type %></td>
         <td><%= link_to 'Edit', edit_task_type_path(task_type) %></td>
         <td><%= link_to 'Destroy', task_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>

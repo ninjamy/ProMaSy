@@ -69,6 +69,6 @@ class EditHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def edit_history_params
-      params.require(:edit_history).permit(:TableName, :OldValue, :NewValue, :ColumName)
+      params.require(:edit_history).permit(:table_name, :old_value, :new_value, :colum_name)
     end
 end

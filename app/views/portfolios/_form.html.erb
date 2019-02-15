@@ -14,23 +14,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :PortName %>
-    <%= form.text_field :PortName, id: :portfolio_PortName %>
+    <%= form.label :port_name %>
+    <%= form.text_field :port_name, id: :portfolio_port_name %>
   </div>
 
   <div class="field">
-    <%= form.label :isActive %>
-    <%= form.check_box :isActive, id: :portfolio_isActive %>
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :portfolio_is_active %>
   </div>
 
   
   <div class="field">
-    <%= form.number_field :CompanyID, id: :portfolio_CompanyID , :value => params[:companyid] , readonly: true, hidden: true %>
+    <%= form.number_field :company_id, id: :portfolio_company_id , :value => params[:company_id] , readonly: true, hidden: true %>
   </div>
 
   <div class="field">
-    <%= form.label :isDefault %>
-    <%= form.check_box :isDefault, id: :portfolio_isDefault %>
+    <%= form.label :is_default %>
+    <%= form.check_box :is_default, id: :portfolio_is_default %>
   </div>
 
   <div class="actions">

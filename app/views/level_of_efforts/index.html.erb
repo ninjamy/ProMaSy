@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Portid</th>
-      <th>Loemin</th>
-      <th>Loemax</th>
+      <th>Portfolio</th>
+      <th>LOE Min</th>
+      <th>LOE Max</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +15,9 @@
   <tbody>
     <% @level_of_efforts.each do |level_of_effort| %>
       <tr>
-        <td><%= level_of_effort.PortID %></td>
-        <td><%= level_of_effort.LOEMin %></td>
-        <td><%= level_of_effort.LOEMax %></td>
+        <td><%= level_of_effort.portfolio_id %></td>
+        <td><%= level_of_effort.loe_min %></td>
+        <td><%= level_of_effort.loe_max %></td>
         <td><%= link_to 'Show', level_of_effort %></td>
         <td><%= link_to 'Edit', edit_level_of_effort_path(level_of_effort) %></td>
         <td><%= link_to 'Destroy', level_of_effort, method: :delete, data: { confirm: 'Are you sure?' } %></td>

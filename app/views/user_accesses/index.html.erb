@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Userid</th>
-      <th>Portid</th>
+      <th>User</th>
+      <th>Portfolio</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +14,8 @@
   <tbody>
     <% @user_accesses.each do |user_access| %>
       <tr>
-        <td><%= user_access.UserID %></td>
-        <td><%= user_access.PortID %></td>
+        <td><%= user_access.user_id %></td>
+        <td><%= user_access.portfolio_id %></td>
         <td><%= link_to 'Show', user_access %></td>
         <td><%= link_to 'Edit', edit_user_access_path(user_access) %></td>
         <td><%= link_to 'Destroy', user_access, method: :delete, data: { confirm: 'Are you sure?' } %></td>

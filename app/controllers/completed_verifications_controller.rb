@@ -69,6 +69,6 @@ class CompletedVerificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def completed_verification_params
-      params.require(:completed_verification).permit(:WorkID, :CriteriaDescription, :isCompleted, :DateCompleted, :AddBy, :CompletedBy, :ImportanceLevel)
+      params.require(:completed_verification).permit(:work_id, :criteria_description, :is_completed, :date_completed, :added_by, :completed_by, :importance_level)
     end
 end

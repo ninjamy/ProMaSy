@@ -69,6 +69,6 @@ class TimeLinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def time_line_params
-      params.require(:time_line).permit(:WorkID, :RemaingHours, :StageID, :TaskID, :TaskStatusID)
+      params.require(:time_line).permit(:work_id, :remaing_hours, :stage_id, :task_id, :task_status_id)
     end
 end

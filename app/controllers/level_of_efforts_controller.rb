@@ -69,6 +69,6 @@ class LevelOfEffortsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def level_of_effort_params
-      params.require(:level_of_effort).permit(:PortID, :LOEMin, :LOEMax)
+      params.require(:level_of_effort).permit(:portfolio_id, :loe_min, :loe_max)
     end
 end

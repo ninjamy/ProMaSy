@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Portname:</strong>
-  <%= @portfolio.PortName %>
+  <strong>Portfolio:</strong>
+  <%= @portfolio.port_name %>
 </p>
 
 <p>
-  <strong>Isactive:</strong>
-  <%= @portfolio.isActive %>
+  <strong>Active:</strong>
+  <%= @portfolio.is_active %>
 </p>
 
 <p>
-  <strong>Companyid:</strong>
-  <%= @portfolio.CompanyID %>
+  <strong>Company:</strong>
+  <%= @portfolio.company_id %>
 </p>
 
 <p>
-  <strong>Isdefault:</strong>
-  <%= @portfolio.isDefault %>
+  <strong>Default:</strong>
+  <%= @portfolio.is_default %>
 </p>
 
-<%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
-<%= link_to 'Back', portfolios_path(@companyid, :companyid=>@portfolio.CompanyID) %>
+<%= link_to 'Edit', edit_portfolio_path(@portfolio, :company_id=>@portfolio.company_id) %> |
+<%= link_to 'Back', portfolios_path(@company_id, :company_id=>@portfolio.company_id) %>

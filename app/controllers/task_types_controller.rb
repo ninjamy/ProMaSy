@@ -69,6 +69,6 @@ class TaskTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_type_params
-      params.require(:task_type).permit(:TaskType, :isActive, :PortID, :EditLabel)
+      params.require(:task_type).permit(:task_type, :is_active, :portfolio_id, :edit_label)
     end
 end

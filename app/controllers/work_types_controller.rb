@@ -69,6 +69,6 @@ class WorkTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_type_params
-      params.require(:work_type).permit(:WorkType, :PortID, :EditLabel)
+      params.require(:work_type).permit(:work_type, :portfolio_id, :edit_label)
     end
 end

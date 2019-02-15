@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Taskstatus</th>
-      <th>Portid</th>
+      <th>Task Status</th>
+      <th>Portfolio</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +14,8 @@
   <tbody>
     <% @task_statuses.each do |task_status| %>
       <tr>
-        <td><%= task_status.TaskStatus %></td>
-        <td><%= task_status.PortID %></td>
+        <td><%= task_status.task_status %></td>
+        <td><%= task_status.portfolio_id %></td>
         <td><%= link_to 'Show', task_status %></td>
         <td><%= link_to 'Edit', edit_task_status_path(task_status) %></td>
         <td><%= link_to 'Destroy', task_status, method: :delete, data: { confirm: 'Are you sure?' } %></td>

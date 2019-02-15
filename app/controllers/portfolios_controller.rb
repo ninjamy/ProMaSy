@@ -1,11 +1,12 @@
+
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
   # GET /portfolios
   # GET /portfolios.json
   def index
-    @companyid = params[:companyid] 
-    @portfolios = Portfolio.where(CompanyID:@companyid)
+    @company_id = params[:company_id] 
+    @portfolios = Portfolio.where(company_id:@company_id)
   end
 
   # GET /portfolios/1
@@ -73,7 +74,7 @@ class PortfoliosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def portfolio_params
-      params.require(:portfolio).permit(:PortName, :isActive, :CompanyID, :isDefault)
+      params.require(:portfolio).permit(:port_name, :is_active, :company_id, :is_default)
     end
 
 

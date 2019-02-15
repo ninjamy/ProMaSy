@@ -69,6 +69,6 @@ class TaskStatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_status_params
-      params.require(:task_status).permit(:TaskStatus, :PortID)
+      params.require(:task_status).permit(:task_status, :portfolio_id)
     end
 end
