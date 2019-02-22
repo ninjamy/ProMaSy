@@ -33,9 +33,6 @@ GEM
       activemodel (= 5.1.6.1)
       activesupport (= 5.1.6.1)
       arel (~> 8.0)
-    activerecord-sqlserver-adapter (5.1.6)
-      activerecord (~> 5.1.0)
-      tiny_tds
     activesupport (5.1.6.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -91,6 +88,8 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.1-x86-mingw32)
       mini_portile2 (~> 2.4.0)
+    pg (1.1.4-x64-mingw32)
+    pg (1.1.4-x86-mingw32)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
@@ -145,13 +144,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sql_server (0.1.1)
-      win32ole-pp
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    tiny_tds (2.1.2-x64-mingw32)
-    tiny_tds (2.1.2-x86-mingw32)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -169,7 +164,6 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    win32ole-pp (1.2.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -178,17 +172,15 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  activerecord-sqlserver-adapter
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
+  pg
   puma (~> 3.7)
   rails (~> 5.1.6)
   sass-rails (~> 5.0)
   selenium-webdriver
-  sql_server
-  tiny_tds (~> 2.1.2)
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
