@@ -11,7 +11,7 @@ gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3' ##, git: "git://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
 gem 'sql_server'
-#gem 'tiny_tds'
+gem 'tiny_tds', '~> 2.1.2'
 gem 'activerecord-sqlserver-adapter'
 
 # Use Puma as the app server

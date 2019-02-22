@@ -188,6 +188,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   sql_server
+  tiny_tds (~> 2.1.2)
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
