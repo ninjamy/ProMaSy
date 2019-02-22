@@ -1,0 +1,940 @@
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Jan 20 19:08:44 2019 +0000
+
+    tds: Avoid changing generated tds_willconvert.h at every run
+
+    The script generate some indexes based on hash order which can
+    change for every run.
+    Sort the values so the indexes are always the same.
+    Although code generate change the behaviour is not changing
+    at all.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Jan 4 08:59:35 2019 +0000
+
+    tds: Allows to connect to servers not implementing @@spid
+
+    Some embedded server does not support this variable, detect
+    and do not provide @spid to applications.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Nov 26 18:34:40 2018 +0000
+
+    dblib: Do not reuse temp_filename as a buffer for date formatting
+
+    The buffer could be not big enough to hold the output date.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Nov 12 14:55:06 2018 +0000
+
+    odbc: Fix SQLEndTran in case auto commit is on
+
+    When SQLEndTran is called for a connection with auto commit on
+    the DM should ignore the call and always return SQL_SUCCESS.
+    This is documented in Mircosoft documentation too.
+    This fixes GitHub issue #236 ("Error while trying to execute data
+    migration") were Django was extracting some data from a database
+    to migrate data.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Nov 6 08:54:07 2018 +0000
+
+    odbc: Better handling of errors converting strings
+
+    Attempt to not cause infinite loops using SQLGetData
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Oct 12 17:01:06 2018 +0100
+
+    iconv: Improve character skipping
+
+    Always skip at least one byte to ignore invalid sequences.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Nov 6 08:38:26 2018 +0000
+
+    Use a patched version of win-iconv
+
+    Found a problem with GB18030 encoding were invalid error code was returned.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Oct 6 10:43:33 2018 +0100
+
+    odbc: Fix return from SQLExecDirect if no rows are returned
+
+    If no rows were returned and NOCOUNT option was on SQLExecDirect
+    returned SQL_NO_DATA even if a record set was present.
+    This caused pyodbc to fail to fetch a row after issueing such
+    queries.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Oct 3 17:11:51 2018 +0100
+
+    odbc: Fix SQLGetData if string conversion is involved
+
+    String conversions and SQLGetData does not behave as expected adding
+    additional NUL characters or causing infinite loops as SQLGetData
+    is not returning any data.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Oct 3 16:15:35 2018 +0100
+
+    odbc: Check correct return from SQLGetData if string conversion is involved
+
+    String conversions and SQLGetData does not behave as expected adding
+    additional NUL characters or causing infinite loops as SQLGetData
+    is not returning any data.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Oct 3 10:59:32 2018 +0100
+
+    tds: Avoid possible data stuck in the kernel
+
+    TDS protocol is quite latency sensitive. As the protocol is about
+    sending requests and waiting for reply having data pending make
+    requests slower.
+    Resetting and setting again CORK flag (Linux and *BSD systems)
+    optimise latency collapsing packets (so reduce bandwidth) however
+    if the queue is full this does not cause a flush immediately
+    but when the queue will became available the kernel will find
+    CORK set so it won't send the partial final request causing delay.
+    Setting both NODELAY and CORK solve the issue.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Oct 2 15:35:24 2018 +0100
+
+    odbc: Fix use after free on server disconnection
+
+    This can happen freeing a statement and connection is closed.
+    In this case the statement remains attached to the connection
+    but then is freed causing dandling pointers.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Apr 15 13:20:33 2018 +0100
+
+    odbc: Use 4 digit for MONEY format
+
+    This is coherent with Microsoft driver behaviour.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Sep 11 22:03:51 2018 +0200
+
+    odbc: Allow SQLPutData for not prepared queries
+
+    SQLPutData returned error if not preceeded by a SQLExecute (for
+    instance if SQLExecDirect was called). The SQLParamData already
+    does the necessary checks.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Aug 27 15:04:03 2018 +0100
+
+    odbc: Add support for SQL_TYPE_TIME binding parameter
+
+    This fixes GitHub issue #229.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Aug 25 08:13:41 2018 +0100
+
+    dblib: Temporary solution for error reporting with required argument
+
+    Some messages require additional arguments, for instance if a string
+    conversion fails.
+    The missing arguments currently causes crashes.
+    Temporarily pass some dummy arguments to avoid the crash.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Aug 24 20:10:45 2018 +0100
+
+    Use correct precision converting from DATETIME to other time types
+
+    This fixes GitHub issue #228.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Jul 20 19:36:25 2018 +0100
+
+    tds: Handle TABNAME token correctly using protocol 5.0
+
+    The size of the table names are 1 byte, not 2.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Jul 20 09:28:40 2018 +0100
+
+    tds: Change characted encoding for Chinese collation
+
+    Despite many documentation state that the code page is CP936
+    Microsoft switched to GB18030 for Chinese encoding.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Jun 29 14:33:47 2018 +0100
+
+    dblib: Remove leak from dbsetmaxprocs
+
+    old_list points to the old list of processes, replaced by a new
+    array.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Aug 13 09:56:29 2017 +0100
+
+    odbc: remove small leak if ApplicationIntent parameter is invalid
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Mar 11 17:37:42 2017 +0000
+
+    Fix typo in CMake check file
+
+    Fix asprintf detection if this is not possible to detect with
+    normal CMake check macro.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Apr 15 14:02:57 2018 +0100
+
+    dblib: Fix _get_printable_size for MONEY
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Apr 15 09:47:00 2018 +0100
+
+    Allows to format MONEY with 4 decimal digits
+
+    Conversion from MONEY/SMALLMONEY to string lead currently to 2
+    decimal digits for historic reasons.
+    However they have 4 digit precision and newer ODBC format using
+    4 digits instead.
+    Allow to format using 4 digits instead of 2.
+
+Author: Jingke Tian <tianjingke@gmail.com>
+Date:   Thu Mar 22 21:22:57 2018 +0800
+
+    dblib: Optimise the padding blanks
+
+    In the following case:
+    The destlen is too big such like 10Mb, but the srclen/len is just a
+    few bytes, will loop almost 10 * 1024 * 1024 times to pad the blank.
+
+Author: Jerry Clabaugh <jerrycl@tutanota.com>
+Date:   Wed Apr 4 18:48:47 2018 +0100
+
+    Use the SQL_ATTR_LOGIN_TIMEOUT value to time out login connections
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Aug 22 03:44:03 2017 +0100
+
+    Handle LibreSSL better
+
+    LibreSSL define OPENSSL_VERSION_NUMBER even if is not ABI
+    compatible with OpenSSL.
+    Try to detect some feature using configure scripts.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Sep 18 11:59:17 2017 +0100
+
+    fisql: Fix umask call
+
+    umask is supposed to help remove some permission mask, not to
+    filter them.
+    A mask of 0600 don't allow the current used to edit the file.
+    What is really wanted here is to prevent other users to access
+    this file we are going to edit.
+
+Author: Alex Loney <alex.loney@intel.com>
+Date:   Fri Mar 9 11:54:28 2018 -0800
+
+    Fix memory leak in tls.c
+
+    Each SSL connection that's created would cause a memory leak (11690 bytes
+    in my testing) because OpenSSL keeps a counter of all certs created with
+    SSL_get_peer_certificate(). In this case, the certificate was pulled but
+    never freed, so when SSL_free() was called, OpenSSL saw that it still has
+    an unfreed certificate and would not free the overall structure.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Feb 18 13:32:05 2018 +0000
+
+    Fix a server bug inserting big varchar/varbinary data using BCP
+
+    Recent MSSQL product seems to not handle correctly VARCHAR(MAX),
+    NVARCHAR(MAX) and VARBINARY(MAX) sent using bulk operation if
+    the data contains the full length.
+    This is not coherent with documentation and the way data is sent
+    using parameter the way server reply these fields (which should
+    have the same format).
+    Using unspecified length (as native client application seems to
+    do) fix the issue.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Feb 14 23:12:59 2018 +0000
+
+    defncopy: Increase sql_text size to make sure is enough for new servers
+
+    On MSSQL 2016 onward syscolumns.text field is 8000 characters long.
+    The sql_text variable that should hold the conversion is 16000 bytes
+    which are not enough to convert any converted string.
+    Increase a bit to make sure is big enough.
+    This is a temporary fix, should be allocated dynamically to make
+    sure will continue to work.
+
+Author: Travis Schafer <tschafer@neucadia.com>
+Date:   Tue Nov 28 17:31:25 2017 +0000
+
+    Support TLS versions greater than TLSv1 when using OpenSSL
+
+    ... just like when using GnuTLS
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Nov 25 14:16:26 2017 +0000
+
+    cmake: Use same version for sybdb library of default build
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Nov 20 23:00:57 2017 +0000
+
+    Always use max size for TEXT/NTEXT/IMAGE
+
+    The network type information for these types allows to specify a
+    size. However the definition of the type does not came with a size.
+    Former implementation does not allows this type to be output and
+    seems to ignore that length and accept any data even if bigger
+    (data has also another length field).
+    Current implementations allows to have BLOBs as output but not
+    using these types.
+    All tests passes with these sizes specified so feels safe and at
+    the same time does not violate the assertion on other types where
+    the data size has to be maximum the column size.
+
+Author: fandrieu <fandrieu@gmail.com>
+Date:   Fri Nov 17 16:04:08 2017 +0100
+
+    dblib: rpc blob out: common _dbcoldata function
+
+    dbdata and dbretdata handle the same column structure.
+    The common logic for returning data is now in an internal
+    function _dbcoldata.
+
+Author: fandrieu <fandrieu@gmail.com>
+Date:   Fri Nov 17 15:46:32 2017 +0100
+
+    dblib: rpc blob out: merge dbdata into dbretdata
+
+    dbretdata is updated with the logic from dbdata.
+
+Author: fandrieu <fandrieu@gmail.com>
+Date:   Wed Nov 15 01:55:18 2017 +0100
+
+    dblib: rpc blob out: minimal fix
+
+    dbretdata doesn't handle blob data,
+    this patch returns textvalue if needed.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Nov 18 00:41:07 2017 +0000
+
+    Build fix if C is not C99
+
+    Do not use int types defined only in C99 (stdint.h).
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Nov 17 14:21:27 2017 +0000
+
+    Handle routing environment
+
+    On routing environment (which should arrive during login) client
+    should reconnect to the given server.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Nov 17 17:20:38 2017 +0000
+
+    dblib: Add support for specifying read-only intent
+
+    Patch from Joshua Lang.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Thu Sep 14 07:33:07 2017 +0100
+
+    WIP test library order
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Oct 31 08:47:02 2017 +0000
+
+    tds: Set keep alive values under Windows
+
+    These settings are necessary for Azure cloud due to firewall
+    rules (long queries will cause disconnections).
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Oct 31 08:45:37 2017 +0000
+
+    tds: Use mnemonics for keep alive values
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Oct 27 16:17:20 2017 +0100
+
+    ctlib: Allows to send dynamic commands without parameters
+
+    In case of no parameters paraminfoalloc returns NULL,
+    handle it not as an error.
+    Problem reported by Michael Becker.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Oct 10 06:05:14 2017 +0100
+
+    tds: Empty record set if message received outside record set
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Oct 10 05:07:02 2017 +0100
+
+    apps: Set database name before connecting
+
+    This fix connection to specific databases on Azure
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Oct 9 22:10:35 2017 +0100
+
+    bsqldb: Set database name before connecting
+
+    This fix connection to specific databases on Azure
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Sep 30 22:25:16 2017 +0100
+
+    ctlib: Add CS_BIGTIME/CS_BIGDATETIME type declarations
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Sep 22 12:28:30 2017 +0100
+
+    ctlib: Support Microsoft DATE/TIME types
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Thu Sep 21 18:23:06 2017 +0100
+
+    ctlib: Support missing Sybase types in _ct_get_client_type
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Thu Sep 21 20:57:11 2017 +0100
+
+    ctlib: Fix wrong type for TIME and DATE from _ct_get_server_type
+
+    This caused data to be converted in the wrong way.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Sep 20 11:20:37 2017 +0100
+
+    tds: Fix possible reading buffer overflow converting from char to float
+
+    Row column data are not NUL terminated so make sure we use
+    terminated strings.
+    This patch also improve checking format errors converting
+    float numbers using strtod instead of atof.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Sep 17 17:34:16 2017 +0100
+
+    tds: Add missing declaration for Sybase type
+
+    Declarations are used for bulk copy and datacopy utility.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Sep 16 13:52:48 2017 +0100
+
+    ctlib: Do not mix 2 set of results
+
+    Variable results was used to store 2 states ending up
+    with possible wrong result from _ct_bind_data.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Sep 16 12:51:49 2017 +0100
+
+    Avoid mixing different column information
+
+    Was possible that for multiple column recordset the binding
+    were reused between columns combining row binding with empty ones.
+    This could cause some wrong metadata information to be returned.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Sep 13 15:48:03 2017 +0100
+
+    build: Fix wrong AC_LANG_SOURCE usage
+
+    This macro requires a single parameter.
+    Usage confused with AC_LANG_PROGRAM.
+
+Author: Kokan <peter.kokai@balabit.com>
+Date:   Wed Aug 30 20:28:50 2017 +0200
+
+    Ctlib: ct_options handle TEXTSIZE command
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Jun 5 00:20:06 2016 +0100
+
+    Add some missing include to fisql utility
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Aug 9 10:44:52 2017 +0100
+
+    Fix a compatibility issue caused but _res macro definition
+
+    Some public header defines _res macro (resolv.h header on
+    some Linux).
+    For compatibility reasons in sybdb.h (which is installed)
+    we just undefine the offending macro.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Aug 9 10:42:27 2017 +0100
+
+    replacements: Avoid macro redefinitions
+
+    Some public headers already redefine strlcpy and strlcat.
+    As we decided to use our internal implementation undefine
+    the old macro to make sure we use our versions.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Aug 8 09:41:23 2017 +0100
+
+    odbc: Check RPC name parsing
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Aug 8 09:41:03 2017 +0100
+
+    odbc: Fix parsing of RPC name
+
+    RPC name was not parsed correctly causing invalid calls.
+    This affected also SQLTables which try to call an internal
+    store procedure using catalog name.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Aug 2 21:11:22 2017 +0100
+
+    odbc: fix SQLTables query build if SQL_NTS are used
+
+    In the case SQL_NTS where used for schema and table and catalog
+    was a pattern string (containing wildcards) instead of calling
+    sp_tableswc the sp_tables was called causing invalid results.
+
+    This fixes issues #136.
+
+Author: Lars Kanis <larskanis@gmail.com>
+Date:   Wed Jul 5 18:05:59 2017 +0200
+
+    Fix out-of-tree build on MINGW.
+
+Author: Ondřej Hošek <hosek@edvlab.tuwien.ac.at>
+Date:   Sat Jun 17 20:52:49 2017 +0200
+
+    dblib: dbsprhead: tdsdump_log buffer address only
+
+    The buffer passed to dbsprhead might be uninitialized; printing it as
+    a string doesn't make much sense. Output its address (using "%p")
+    instead.
+
+Author: Ondřej Hošek <hosek@edvlab.tuwien.ac.at>
+Date:   Sat Jun 17 20:49:09 2017 +0200
+
+    dblib: dbsprhead: adjust buf_len by name length
+
+    After copying the column name into the buffer in dbsprhead, reduce
+    buf_len, which is used to guard against writing outside the buffer, by
+    the length of the column name.
+
+Author: Ondřej Hošek <hosek@edvlab.tuwien.ac.at>
+Date:   Sat Jun 17 19:51:04 2017 +0200
+
+    tds: Escape left brace in regex in encodings.pl
+
+    Since Perl v5.22.0, unescaped left braces ('{') in regexes are
+    deprecated; since Perl v5.26.0, they are forbidden in most cases.
+    Escape such a case in encodings.pl using a backslash.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Jun 11 09:04:41 2017 +0100
+
+    ctlib: fix type cast
+
+    The argument is a CS_BOOL, not a char. This worked only on little
+    endian platforms.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Thu Jun 8 13:53:07 2017 +0100
+
+    support Linux system < 2.6.27 having eventfd
+
+    Before this version eventfd didn't accept and have flags support.
+    Try to create the eventfd without flags and then set later.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Jun 6 21:59:57 2017 +0100
+
+    pool: Avoid crash if password setting is missing
+
+    Test on user.c was causing a crash due to NULL dereference.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Jun 6 08:04:14 2017 +0100
+
+    Fix ct_options for CS_OPT_ARITHIGNORE and CS_OPT_ARITHABORT
+
+    The two options required just normal boolean processing.
+
+    This problem was reported by Matt Meissner.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed May 24 14:46:43 2017 +0100
+
+    Fix bulk copy setting
+
+    By default bulk copy is enabled but the usage of bulk_copy
+    field in TDSLOGIN where a bit weird.
+    Make clear and document that bulk_copy != 0 means enabled.
+    Also fix a mismatch between BCP_SETL and bcp_getl.
+    This fix bug #119 ("BCP_SETL() and bcp_getl() have inconsistant API").
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed May 17 15:28:56 2017 +0100
+
+    Fix compile if TLS is disabled
+
+    tds_ssl_deinit have to be defined including the proper header.
+    This as if TLS is disabled the function is defined in the header.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue May 2 23:26:24 2017 +0100
+
+    Fix very big login packet using MSSQL
+
+    If login packet is really big to split into multiple TDS packets
+    and is encrypted MSSQL only encrypt the first TDS packet, the others
+    are not encrypted.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Apr 29 22:57:00 2017 +0100
+
+    Prevent invalid record parameter
+
+    This can happen if invalid data are sent.
+    For instance if server send some parameter using PARAMFMT followed
+    by old style PARAM. You potentially get a result which is half
+    composed by a row and half by separate data.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Apr 29 22:27:47 2017 +0100
+
+    Assure SELECT @@PID query returns a normal row
+
+    Invalid server response can cause a different row type
+    to be returned causing a NULL pointer dereference in tds_set_spid.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Apr 29 21:14:46 2017 +0100
+
+    Add an invalid data type to avoid not initialized pointer to functions
+
+    Always initialize TDSCOLUMN->funcs to avoid NULL pointer dereferences.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Apr 29 18:53:18 2017 +0100
+
+    Do not send clear text password if encryption login is required on Sybase
+
+    Password should just be sent encrypted, no reason to send also
+    not encrypted.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Apr 15 15:49:12 2017 +0100
+
+    Check server is not returning negative values for column sizes
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Apr 2 15:28:07 2017 +0100
+
+    Handle errors getting datatype meta information
+
+    This prevent server to send wrong encoded types
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Apr 15 15:20:05 2017 +0100
+
+    Detect and handle some protocol problem
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Apr 15 15:18:48 2017 +0100
+
+    Avoid some assert to be triggered by server
+
+    Instead of crashing the client detect the protocol problem
+    and close the connection.
+
+Author: Attila Horváth <ahorvath@fusioneer.com>
+Date:   Fri Mar 10 15:22:50 2017 +0000
+
+    Do not override per-connection timeout settings in dbsettime
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Feb 25 18:29:33 2017 +0000
+
+    Support SQL Anywhere connections
+
+    SQL Anywhere does not support multiple databases and USE statement
+    so don't send the request to avoid connection failures
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Tue Feb 14 11:20:03 2017 +0000
+
+    Provide compatibility with OpenSSL 1.1
+
+    OpenSSL 1.1 changed quite a lot API since 1.0.
+    Update code to make it compatible with either versions.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Feb 6 14:41:18 2017 +0000
+
+    Fix SSPI connections using protocols >7.1
+
+    Do not check for a minimal size on the SSPI data received from the
+    server.
+    This fix some connection problems using protocols >7.1.
+
+    Reported-by: Ladislav Karrach <lacak@zoznam.sk>
+
+Author: Dave Beaudet <beaudet@gmail.com>
+Date:   Fri Feb 3 21:37:48 2017 +0000
+
+    Added support for configurable openssl cipher list
+
+    Added new option to freetds.conf for specifying the cipher list
+    supplied to openssl. This is necessary for several reasons:
+    1. organizations that need more control over the specifics of
+      encrypted connections
+    2. to overcome the occasional incompatibility (sometimes intermittent)
+       between open source encryption libraries and Microsoft's
+       implementations. For example, several users reported intermittent
+       connection problems where roughly 0.5% of connection attempts would
+       fail for some reason. Removing specific key exchange protocols
+       provided relief in at least one case.
+    3. The cipher list can be specified in more generic terms, e.g.
+       "HIGH:!SSLv2:!aNULL:-DH" rather than having to list specific cipher
+       configurations that are otherwise subject to becoming outdated as
+       the encryption landscape changes.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Dec 24 10:36:58 2016 +0000
+
+    Fix TLS hostname validation using OpenSSL
+
+    When attempting to make a connection to a SQL Server and providing
+    a CA Cert file, FreeTDS was unable to validate a hostname.
+
+    The function check_name_match in tls.c was checking the wrong
+    value from check_wildcard.
+
+    This fixes GitHub Issue #90
+
+    Reported-by: Alex Loney
+
+Author: Jeff Farr <jefarr@wayfair.com>
+Date:   Mon Dec 5 13:01:21 2016 -0500
+
+    Process batch statements without a select correctly
+
+    If you send a batch of statements in a single call to the database, and
+    these statements don't return rows, the dbresults function doesn't
+    process the data correctly. It will loop over all data the first time it
+    is called and return to the calling function that there are no more
+    rows.
+
+    Added a return on TDS_DONE_RESULT that stops processing data when a batch
+    of statements doesn't contain a select.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Wed Nov 30 23:26:16 2016 +0000
+
+    Read trailing tokens after dbnextrow
+
+    This fix rpc test after batch statement fix.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Thu Nov 17 06:17:36 2016 +0000
+
+    Fix string conversion in ODBC if string is really long
+
+    During string conversion is needed to compute and return the size
+    of all converted string even if is returned only partially.
+    In the case the part of the unconverted string was very long
+    this was considered like an error (SQL_ERROR) instead of a
+    warning (SQL_SUCCESS_WITH_INFO).
+
+Author: Peter Deacon <peterd@iea-software.com>
+Date:   Tue Nov 15 09:21:40 2016 +0000
+
+    Fix invalid free which lead to crash
+
+    buf is not allocated with a malloc family function,
+    the buffer will be freed as the string is freed.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Nov 11 17:24:20 2016 +0000
+
+    Fix possible infinite recursive calls calling tds_disconnect
+
+    In tds_disconnect when sending logout token ran into a problem
+    where tds_put_byte failure leads to a recursive calls to
+    tds_disconnect until process runs out of stack.
+
+    Rough loop:
+
+    tds_disconnect
+    tds_put_byte
+    tds_write_packet
+    tds_connection_write
+    tds_goodwrite
+    tds_connection_close
+    close_socket
+    tds_disconnect
+    ...
+
+    Reported-by: Peter Deacon <peterd@iea-software.com>
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Nov 5 14:17:21 2016 +0000
+
+    Avoid losing sync if a conversion problem happens
+
+    This happened for TEXT or long strings.
+    Shorter strings already have this behaviour.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Nov 5 14:15:53 2016 +0000
+
+    Set column_cur_size even on conversion errors
+
+    Allows to read truncated data instead of discarding everything.
+    This can happen on invalid encoding inside strings.
+    As internal conversions will replace invalid sequence and signal
+    the problem with callbacks client can at least show some data.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Nov 4 05:30:47 2016 +0000
+
+    bcp: Do not trim non ascii columns
+
+    This avoid trimming multi byte encoding ending with 0x20 bytes.
+
+    This fixes
+    http://stackoverflow.com/questions/38984053/freebcp-unicode-data-is-odd-byte-size-for-column-should-be-even-byte-size
+    (https://github.com/FreeTDS/freetds/issues/80)
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Thu Sep 1 22:41:52 2016 +0100
+
+    Update OpenSSL cipher list
+
+    This increase security and also fix a recent incompatibility
+    between OpenSSL and SChannel (SChannel versions patched in a
+    couple of months).
+
+Author: John Kendall <john@capps.com>
+Date:   Thu Aug 25 12:09:50 2016 +0100
+
+    Handle correctly long object in defncopy for ASE servers
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Jul 22 10:27:08 2016 +0100
+
+    Remove some string overflows from VMS code
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Jul 22 10:29:19 2016 +0100
+
+    pool: Avoid to overwrite packet if not entirely written
+
+    This can happen if packet is not entirely written to server after
+    being read from client.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Jul 18 12:09:07 2016 +0100
+
+    Extends cs_dt_crack to support newer types
+
+    This add a new cs_dt_crack_v2 ABI function (cs_dt_crack API is redirected
+    to it using a preprocessor macro). This to make the extension of
+    CS_DATEREC more safe (version of 1.0 could call cs_dt_crack with
+    CS_BIGDATETIME_TYPE/CS_BIGTIME_TYPE without having these fields written
+    which would possible cause memory corruption on version compiled with
+    these fields missing).
+    This make sqsh compile and work with newer date/time types.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Jul 18 09:38:13 2016 +0100
+
+    Make AppVeyor build with OpenSSL enabled
+
+    CMake was not finding OpenSSL.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Mon Jun 27 12:59:07 2016 +0100
+
+    Fix NUMERIC column for bcp native format
+
+    Prefix was not handled correctly.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Jun 26 11:23:15 2016 +0100
+
+    Fix freebcp -E (identity columns) output
+
+    An additional query prevented code to handle correctly column types.
+
+Author: Manfroi Fabrice <fm@4js.com>
+Date:   Wed Jun 22 16:33:53 2016 +0200
+
+    Fix build error on AIX 6.1 / 7.1 / 7.2
+
+    tls.c:719: error: 'AF_INET6' undeclared (first use in this function)
+    tls.c:719: error: (Each undeclared identifier is reported only once
+    tls.c:719: error: for each function it appears in.)
+    tls.c:722: error: 'AF_INET' undeclared (first use in this function)
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Jun 18 21:08:17 2016 +0100
+
+    Fix internal result state in dbcanquery
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Jun 18 13:27:56 2016 +0100
+
+    Avoid to strip spaces from procedure text.
+
+    NTBSTRINGBIND strip spaces at the end.
+    Using STRINGBIND with 0 size cause string to be just NUL terminated.
+    The 0 would lead to a possible overflow however we check the column
+    len before doing the bind to avoid such possibility.
+
+    Original patch from Nem W Schlecht.
+
+Author: Nem W Schlecht <nem@emptec.com>
+Date:   Fri Jun 17 22:38:12 2016 +0100
+
+    Avoid crash on connection error and report an error instead
+
+    Patch from Nem W Schlecht.
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sun Jun 12 21:09:43 2016 +0100
+
+    allows to specify 5.0 as tds protocol version during configure
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Sat Jun 11 09:32:43 2016 +0100
+
+    do not compile as bundle under Mac OS X is --with-odbc-nodm is specified
+
+    In this case the driver will be used as a dynamic library (not loaded
+    dynamically) so compile as such.
+    In case a DM is used unit tests/application will link to the DM which
+    will load the driver (requiring to be a module on old Mac OS X versions).
+
+Author: Frediano Ziglio <freddy77@gmail.com>
+Date:   Fri Jun 10 11:45:44 2016 +0100
+
+    replace BYTE with unsigned char in ODBC files
+
+    BYTE is not supported on some platforms.
+    This fixes Mac OS X build.
+    unixODBC headers files and Windows platform define it.
+
