@@ -6,7 +6,12 @@
 #
 default: &default
   adapter: sqlserver
-    timeout: 5000
+  host: 'localhost'
+  #mode: :dblib
+  database: ProMaSy
+  username: RailsUser
+  password: sliaR23#
+  port: 1433
 
 #development:
 #  <<: *default
