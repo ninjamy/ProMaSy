@@ -13,6 +13,7 @@ default: &default
 #  <<: *default
 #  database: db/development.sqlite3
 
+
 development:
   adapter: sqlserver
   host: 'localhost'
@@ -25,10 +26,10 @@ development:
 
 production:
   adapter: sqlserver
-  encoding: utf8
-  host: 'race.database.windows.net'
+  nideL dblib
+  host: race.database.windows.net
   database: promasys
-  username: ninjamy
+  username: ninjamy@race
   password: Arsare07!
   port: 1433
 
