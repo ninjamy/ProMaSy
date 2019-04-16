@@ -26,10 +26,10 @@ development:
 production:
   adapter: sqlserver
   encoding: utf8
-  host: 'promasys.c51wpwf1bqed.us-east-2.rds.amazonaws.com'
+  host: 'race.database.windows.net'
   database: promasys
-  username: ninjamy7
-  password: Promasys23#
+  username: ninjamy
+  password: Arsare07!
   port: 1433
 
 # Warning: The database defined as "test" will be erased and
