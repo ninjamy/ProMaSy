@@ -25,11 +25,9 @@ development:
 
 
 production:
-  adapter: sqlserver
-  mode: dblib
-  azure: true 
-  url: <%= ENV["DATABASE_URI"] %>
-  port: 1433
+  #adapter: sqlserver
+  url: <%= ENV["DATABASE_URL"] %>
+  
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
