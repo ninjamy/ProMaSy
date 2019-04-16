@@ -17,7 +17,7 @@ default: &default
 development:
   adapter: sqlserver
   host: 'localhost'
-  #mode: :dblib
+  mode: dblib
   database: ProMaSy
   username: RailsUser
   password: sliaR23#
@@ -26,7 +26,8 @@ development:
 
 production:
   adapter: sqlserver
-  nideL dblib
+  mode: dblib
+  azure: true 
   host: race.database.windows.net
   database: promasys
   username: ninjamy@race
