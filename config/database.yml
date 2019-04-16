@@ -28,10 +28,7 @@ production:
   adapter: sqlserver
   mode: dblib
   azure: true 
-  host: race.database.windows.net
-  database: promasys
-  username: ninjamy@race
-  password: Arsare07!
+  url: <%= ENV["DATABASE_URI"] %>
   port: 1433
 
 # Warning: The database defined as "test" will be erased and
